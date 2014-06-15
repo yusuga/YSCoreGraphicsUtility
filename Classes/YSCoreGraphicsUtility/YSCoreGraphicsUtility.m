@@ -21,4 +21,15 @@
     return CGPointMake(startPoint.x + width*percent, startPoint.y + height*percent);
 }
 
++ (CGSize)size:(CGSize)startSize toSize:(CGSize)endSize atPercent:(CGFloat)percent
+{
+    if (percent < 0.f) percent = 0.f;
+    if (percent > 1.f) percent = 1.f;
+
+    CGFloat width = endSize.width - startSize.width;
+    CGFloat height = endSize.height - startSize.height;
+    
+    return CGSizeMake(startSize.width + width*percent, startSize.height + height*percent);
+}
+
 @end

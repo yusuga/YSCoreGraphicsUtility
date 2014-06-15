@@ -11,5 +11,6 @@
 @interface YSCoreGraphicsUtility : NSObject
 
 + (CGPoint)point:(CGPoint)startPoint toPoint:(CGPoint)endPoint atPercent:(CGFloat)percent;
++ (CGSize)size:(CGSize)startSize toSize:(CGSize)endSize atPercent:(CGFloat)percent;
 
 @end
