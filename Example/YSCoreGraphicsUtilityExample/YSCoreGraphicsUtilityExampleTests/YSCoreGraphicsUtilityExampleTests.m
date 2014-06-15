@@ -27,7 +27,7 @@
     [super tearDown];
 }
 
-- (void)testPointToPoint
+- (void)testPointToPointAtPercent
 {
     CGPoint startPoint = CGPointMake(0.f, 0.f);
     CGPoint endPoint = CGPointMake(100.f, 100.f);
@@ -58,6 +58,39 @@
     
     p = [YSCoreGraphicsUtility point:startPoint toPoint:endPoint atPercent:0.8f];
     XCTAssertTrue(CGPointEqualToPoint(p, CGPointMake(-180.f, -180.f)), @"p: %@", NSStringFromCGPoint(p));
+}
+
+- (void)testSizeToSizeAtPercent
+{
+    CGSize startSize = CGSizeMake(0.f, 0.f);
+    CGSize endSize = CGSizeMake(100.f, 100.f);
+    
+    CGSize s = [YSCoreGraphicsUtility size:startSize toSize:endSize atPercent:0.f];
+    XCTAssertTrue(CGSizeEqualToSize(s, startSize), @"p: %@", NSStringFromCGSize(s));
+    
+    s = [YSCoreGraphicsUtility size:startSize toSize:endSize atPercent:1.f];
+    XCTAssertTrue(CGSizeEqualToSize(s, endSize), @"p: %@", NSStringFromCGSize(s));
+    
+    s = [YSCoreGraphicsUtility size:startSize toSize:endSize atPercent:0.5f];
+    XCTAssertTrue(CGSizeEqualToSize(s, CGSizeMake(50.f, 50.f)), @"p: %@", NSStringFromCGSize(s));
+    
+    s = [YSCoreGraphicsUtility size:startSize toSize:endSize atPercent:0.8f];
+    XCTAssertTrue(CGSizeEqualToSize(s, CGSizeMake(80.f, 80.f)), @"p: %@", NSStringFromCGSize(s));
+    
+    
+    startSize = CGSizeMake(-100.f, -100.f);
+    endSize = CGSizeMake(-200.f, -200.f);
+    s = [YSCoreGraphicsUtility size:startSize toSize:endSize atPercent:0.f];
+    XCTAssertTrue(CGSizeEqualToSize(s, startSize), @"p: %@", NSStringFromCGSize(s));
+    
+    s = [YSCoreGraphicsUtility size:startSize toSize:endSize atPercent:1.f];
+    XCTAssertTrue(CGSizeEqualToSize(s, endSize), @"p: %@", NSStringFromCGSize(s));
+    
+    s = [YSCoreGraphicsUtility size:startSize toSize:endSize atPercent:0.5f];
+    XCTAssertTrue(CGSizeEqualToSize(s, CGSizeMake(-150.f, -150.f)), @"p: %@", NSStringFromCGSize(s));
+    
+    s = [YSCoreGraphicsUtility size:startSize toSize:endSize atPercent:0.8f];
+    XCTAssertTrue(CGSizeEqualToSize(s, CGSizeMake(-180.f, -180.f)), @"p: %@", NSStringFromCGSize(s));
 }
 
 @end
